@@ -12,6 +12,6 @@ The `Author` model has the following fields:
 - last_name (with the `max_length` of 64);
 - pseudonym (with the `max_length` of 64, can be null);
 - age (integer field);
-- retired (boolean field);
+- retired (boolean field).
 
 **Please note:** you should also modify `author.urls.py` to make things work.

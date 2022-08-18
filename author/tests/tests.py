@@ -1,14 +1,13 @@
 from django.test import TestCase
+from django.urls import reverse
 from rest_framework import status
 
 from rest_framework.test import APIClient
-from rest_framework.viewsets import ModelViewSet
 
 from author.models import Author
 from author.serializers import AuthorSerializer
-from author.views import AuthorViewSet
 
-AUTHORS_URL = "/api/authors/"
+AUTHORS_URL = reverse("author:manage-list")
 
 
 class AuthorApiTests(TestCase):
@@ -27,9 +26,6 @@ class AuthorApiTests(TestCase):
             age=58,
             retired=False
         )
-
-    def test_author_viewset_is_subclass_model_viewset(self):
-        self.assertEqual(issubclass(AuthorViewSet, ModelViewSet), True)
 
     def test_get_authors(self):
         authors = self.client.get(AUTHORS_URL)

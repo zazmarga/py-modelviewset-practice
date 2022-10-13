@@ -18,13 +18,10 @@ class AuthorApiTests(TestCase):
             last_name="Rowling",
             pseudonym="J. K. Rowling",
             age=57,
-            retired=False
+            retired=False,
         )
         Author.objects.create(
-            first_name="Dan",
-            last_name="Brown",
-            age=58,
-            retired=False
+            first_name="Dan", last_name="Brown", age=58, retired=False
         )
 
     def test_get_authors(self):
@@ -40,7 +37,7 @@ class AuthorApiTests(TestCase):
                 "first_name": "Serhii",
                 "last_name": "Zhadan",
                 "age": 47,
-                "retired": False
+                "retired": False,
             },
         )
         db_authors = Author.objects.all()
@@ -55,7 +52,7 @@ class AuthorApiTests(TestCase):
                 "first_name": "Serhii",
                 "last_name": "Zhadan",
                 "age": "extremely young",
-                "retired": False
+                "retired": False,
             },
         )
         not_created_author = Author.objects.filter(first_name="Serhii")
@@ -71,7 +68,7 @@ class AuthorApiTests(TestCase):
                 last_name="Rowling",
                 pseudonym="J. K. Rowling",
                 age=57,
-                retired=False
+                retired=False,
             )
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -88,18 +85,18 @@ class AuthorApiTests(TestCase):
                 "first_name": "Serhii",
                 "last_name": "Zhadan",
                 "age": 47,
-                "retired": True
+                "retired": True,
             },
         )
         db_author = Author.objects.get(id=1)
         self.assertEqual(
-            [db_author.first_name, db_author.last_name, db_author.age, db_author.retired],
             [
-                "Serhii",
-                "Zhadan",
-                47,
-                True
+                db_author.first_name,
+                db_author.last_name,
+                db_author.age,
+                db_author.retired,
             ],
+            ["Serhii", "Zhadan", 47, True],
         )
 
     def test_put_invalid_author(self):
